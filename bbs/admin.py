@@ -1,3 +1,3 @@
 from django.contrib import admin
-print("정은주")
+print("ddddddddd")
 # Register your models here.
