@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib import admin
 from django.urls import include, path
+from . import views
 
 urlpatterns = [
-    path('bbs/', include('bbs.urls')),
+    path('',views.index, name='index'),
     path('admin/', admin.site.urls),
+    #path('', include('bbs.urls')),
+    #path('', templates.views.index,name='login'),
 ]
