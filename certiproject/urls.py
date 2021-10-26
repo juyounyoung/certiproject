@@ -20,7 +20,7 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('',views.index, name='index'),
+    path('',views.login, name='login'),
     path('admin/', admin.site.urls),
     #path('', include('bbs.urls')),
     #path('', templates.views.index,name='login'),
