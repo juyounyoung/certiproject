@@ -27,3 +27,5 @@ urlpatterns = [
     #path('', include('bbs.urls')),
     #path('', templates.views.index,name='login'),
 ]
+
+"adadasdsdtest"
