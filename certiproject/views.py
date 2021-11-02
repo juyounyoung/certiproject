@@ -5,3 +5,6 @@ def login(request):
 
 def bbs_list(request):
     return render(request,'./bbs_list.html')
+
+def bbs_register(request):
+    return render(request,'./bbs_register.html')

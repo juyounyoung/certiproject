@@ -21,7 +21,8 @@ from . import views
 
 urlpatterns = [
     path('', views.login, name='login'),
-    path('', views.bbs_list, name='bbs_list'),
+    path('bbs/', views.bbs_list, name='bbs_list'),
+    path('bbs/bbs_register', views.bbs_register, name='bbs_register'),
     path('admin/', admin.site.urls),
     #path('', include('bbs.urls')),
     #path('', templates.views.index,name='login'),
