@@ -20,10 +20,12 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('', views.login, name='login'),
-    path('bbs/', views.bbs_list, name='bbs_list'),
-    path('bbs/bbs_register', views.bbs_register, name='bbs_register'),
+    path('', views.signin, name='login'),
+    path('bbs_list', views.bbs_list, name='bbs_list'),
+    path('bbs_register', views.bbs_register, name='bbs_register'),
     path('admin/', admin.site.urls),
-    #path('', include('bbs.urls')),
-    #path('', templates.views.index,name='login'),
+    # path('', include('bbs.urls')),
+    # path('', templates.views.index,name='login'),
+    path('login/', views.signin, name ='user_login'),
+    path('auth/', include("users.urls"))
 ]
