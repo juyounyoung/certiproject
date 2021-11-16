@@ -1,11 +1,31 @@
 {% load static%}
-<DOCTYPE HTML5>
 <html>
-  <head>
-      <link rel="stylesheet" href="{% static 'css/bbs.css' %}">
-      <title>학생증사전등록시스템 글쓰기</title>
-  </head>
-<body>
+    <head>
+	<link rel="stylesheet" href="{% static 'css/bbs.css' %}">
+        <title>학생증사전 등록 시스템 등록</title>
+    </head>
+    <body style="margin-top: 30px;margin-left: 30px;">
+        <form action="{% url 'bbs_register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file"
+                   title="Upload excel file"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+            <p>
+            <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
 
-</body>
+        <p></p>
+        <hr>
+
+        {% for row in excel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </body>
 </html>

@@ -1,4 +1,5 @@
 {% load static%}
+
 <DOCTYPE HTML5>
 <html>
   <head>
@@ -8,72 +9,40 @@
   </head>
 <body>
    <div id="mainWrapper">
-
         <ul>
             <!-- 게시판 제목 -->
             <li>학생증 사전 등록 시스템</li>
 
             <!-- 게시판 목록  -->
-            <button class="btn_register" onclick="button()">글쓰기</button>
-            <li>
-                <ul id ="ulTable">
-                    <li>
-                        <ul>
-                            <li>No</li>
-                            <li>제목</li>
-                            <li>작성일</li>
-                            <li>작성자</li>
-                            <li>조회수</li>
-                        </ul>
-                    </li>
-                    <!-- 게시물이 출력될 영역 -->
-                    <li>
-                        <ul>
-                            <li>1</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    </li>
+    <table style="width:900px; border:1px solid black;" class="table">
+        <thead>
+            <tr class="th_color">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일시</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+            {% for board in board_list %}
+            <tbody>
+                <tr class="td_color" >
+                    <td>{{board.board_id}}</td>
+                    <td onclick="location.href='/delete/{{board_list.pk}}">{{board.title}}</td>
+                    <td>{{board.school_name}}</td>
+                    <td>{{board.reporting_date}}</td>
+                    <td >{{board.hit_count}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+    </table>
 
-                    <li>
-                        <ul>
-                            <li>2</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <ul>
-                            <li>3</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <ul>
-                            <li>4</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    <li>
-                </ul>
-            </li>
 
             <!-- 게시판 페이징 영역 -->
             <li>
                 <div id="divPaging">
                     <div>◀</div>
-                       <div><b>1</b></div>
+                    <div><b>1</b></div>
                     <div>2</div>
                     <div>3</div>
                     <div>4</div>

@@ -1,19 +1,16 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.core.paginator import Paginator
+from django.views import View
+from django.views import generic
+import openpyxl
+import pymysql
 
-
-def login(request):
-    return render(request,'./login.html')
-
-def bbs_list(request):
-    return render(request,'./bbs_list.html')
-
-def bbs_register(request):
-    return render(request,'./bbs_register.html')
+#def bbs_list(request):
+#    return render(request,'./bbs_list.html')
 
 def signin(request):
     # return render(request, '/bbs_list.html')
@@ -23,10 +20,32 @@ def signin(request):
         password = request.POST['password']
         user = authenticate(username = username, password = password)
         if user is not None:
-            return render(request, './bbs_list.html')
+            return render(request, 'bbs_list.html')
+            #return render(request, './bbs_list.html')
 
         else:
             return HttpResponse('Login failed. Try again.')
     else:
         form = LoginForm()
         return render(request, './login.html')
+
+def bbs_register(request):
+   # try:
+        #conn = pymysql.connect(host='localhost', user='root',password='student2021^^', db = 'studentidcard', charset='utf8')
+        #curs = conn.cursor(pymysql.cursors.DictCursor)
+    if request.method == 'GET':
+        return render(request,'./bbs_register.html',{})
+    else:
+        excel_file = request.FILES["excel_file"]
+        wb = openpyxl.load_workbook(excel_file)
+
+        worksheet = wb["1반"]
+        print(worksheet)
+
+        excel_data = list()
+        for row in worksheet.iter_rows():
+            row_data = list()
+            for cell in row:
+                row_data.append(str(cell.value))
+            excel_data.append(row_data)
+        return render(request,'./bbs_register.html',{"excel_data":excel_data})

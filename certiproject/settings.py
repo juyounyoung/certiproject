@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bbs',
     'certiproject',
     'users',
+    'board'
 ]
 
 MIDDLEWARE = [
@@ -82,11 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'studentidcard',
         'USER': 'root',
-        'PASSWORD': 'eunju2885!',
+        'PASSWORD': 'student2021^^',
         'HOST': 'localhost',
         'PORT': '3306',
     }
-    }
+}
 
 
 

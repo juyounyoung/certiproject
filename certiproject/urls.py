@@ -18,14 +18,14 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from django.urls import path, include
 
 urlpatterns = [
     path('', views.signin, name='login'),
-    path('bbs_list', views.bbs_list, name='bbs_list'),
+    path('board/',include('board.urls')),
+   # path('bbs_list', views.Board_list, name='bbs_list'),
     path('bbs_register', views.bbs_register, name='bbs_register'),
     path('admin/', admin.site.urls),
-    # path('', include('bbs.urls')),
     # path('', templates.views.index,name='login'),
-    path('login/', views.signin, name ='user_login'),
-    path('auth/', include("users.urls"))
+    path('auth/', include('users.urls')),
 ]
