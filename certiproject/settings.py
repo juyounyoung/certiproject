@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_extensions',
     'certiproject',
     'users',
     'board'
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'studentidcard',
         'USER': 'root',
-        'PASSWORD': 'student2021^^',
+        'PASSWORD': 'eunju2885!',
         'HOST': 'localhost',
         'PORT': '3306',
     }

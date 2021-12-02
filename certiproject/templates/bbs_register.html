@@ -1,10 +1,11 @@
 {% load static%}
 <html>
     <head>
-	<link rel="stylesheet" href="{% static 'css/bbs.css' %}">
+   <link rel="stylesheet" href="{% static 'css/bbs.css' %}">
         <title>학생증사전 등록 시스템 등록</title>
     </head>
     <body style="margin-top: 30px;margin-left: 30px;">
+    <p>학생 정보 등록</p>
         <form action="{% url 'bbs_register' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file"

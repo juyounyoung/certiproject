@@ -8,6 +8,9 @@ from django.views import View
 from django.views import generic
 import openpyxl
 import pymysql
+import pandas as pd
+from sqlalchemy import create_engine
+
 
 #def bbs_list(request):
 #    return render(request,'./bbs_list.html')
@@ -18,6 +21,7 @@ def signin(request):
         form = LoginForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
+        print(username, password)
         user = authenticate(username = username, password = password)
         if user is not None:
             return render(request, 'bbs_list.html')
@@ -29,12 +33,13 @@ def signin(request):
         form = LoginForm()
         return render(request, './login.html')
 
+
 def bbs_register(request):
-   # try:
-        #conn = pymysql.connect(host='localhost', user='root',password='student2021^^', db = 'studentidcard', charset='utf8')
-        #curs = conn.cursor(pymysql.cursors.DictCursor)
+
+
+# int s_group = 0
     if request.method == 'GET':
-        return render(request,'./bbs_register.html',{})
+        return render(request, './bbs_register.html', {})
     else:
         excel_file = request.FILES["excel_file"]
         wb = openpyxl.load_workbook(excel_file)
@@ -42,10 +47,23 @@ def bbs_register(request):
         worksheet = wb["1반"]
         print(worksheet)
 
+        table = pd.read_excel(excel_file, sheet_name='1반', header=0)
+        engine = create_engine("mysql+pymysql://root:eunju2885!@localhost:3306/StudentIDCard", encoding='utf-8-sig')
+        table.to_sql(name='student', con=engine, if_exists='append', index=False)
         excel_data = list()
         for row in worksheet.iter_rows():
             row_data = list()
             for cell in row:
                 row_data.append(str(cell.value))
             excel_data.append(row_data)
-        return render(request,'./bbs_register.html',{"excel_data":excel_data})
+        return render(request, './bbs_register.html', {"excel_data": excel_data})
+
+
+def preview(request):
+
+    return render(request, './preview.html')
+
+def register_ondirect(request):
+
+    return render(request, './register_ondirect.html')
+

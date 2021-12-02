@@ -28,4 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', templates.views.index,name='login'),
     path('auth/', include('users.urls')),
+    path('preview', views.preview, name='preview'),
+    path('register_ondirect', views.register_ondirect, name='register_ondirect'),
 ]
